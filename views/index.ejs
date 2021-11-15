@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Eastern Nagano Castle Tour</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./styles.css" >
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="infoBox">
+        <h1 id="castleTitle">Click on a flag to get started!</h1>
+        <div class="flex">
+            <img id="castlePhoto" src="sanadaflag.png" />
+            <div id="mainInfo">
+                <h3 id="castleDate"> </h3>
+                <h3 id="castleOwner">: </h3>
+            </div>
+        </div>
+        <p id="castleInfo"></p>
+    </div>
+
+
+
+
+    <script>
+        //save the Json file as a local variable
+        var castles = <%- castles %>;
+
+        var map;
+
+
+        function initMap() {
+            const myLatLng = { lat: 36.29739303213108, lng: 138.53031026316654 };
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 10
+            }
+        );
+
+        //Add markers to the map
+      castles.forEach(function(castle) {
+          var castle = new google.maps.Marker({
+              position: {lat:castle.castle_x, lng:castle.castle_y},
+              map,
+              title: castle.castle_name,
+              icon: "sanadaflag.png",
+              owner: castle.castle_built_by,
+              built: castle.castle_date,
+              information: castle.castle_info
+            })
+        // Update the U.I. when a marker is clicked
+          google.maps.event.addListener(castle, 'click', function() {
+              console.log("click")
+             document.getElementById('castleTitle').innerHTML = castle.title;
+             document.getElementById('castleDate').innerHTML = "Built: " + castle.built;
+             document.getElementById('castleOwner').innerHTML = "Built by: " + castle.owner;
+             document.getElementById('castleInfo').innerHTML =  castle.information;
+             document.getElementById('castlePhoto').src = castle.title + ".png" ;
+          });
+      });
+    }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAUhK-BBhqBr8y_CBwknX0tJwHVtHHz30&callback=initMap"
+    async defer></script>
+
+
+  </body>
+</html>
