@@ -8,19 +8,22 @@
       border-color: black;
       height: 80%;
       min-width: 400px;
+      margin-top: 10px;
       margin-bottom: 10px;
+      width: 80%;
 
         }
   /* Optional: Makes the sample page fill the window. */
   html, body {
       height: 80%;
-      width: 80%;
+      font-family: serif;
+      font: New Century Schoolbook;
       margin: auto;
-      padding: 10px;
+
   }
 
   html {
-      background-color: rgba(250,220,00,0.5);
+
 
   }
 
@@ -67,4 +70,13 @@ h1 {
     #castlePhoto {
         max-width: 90%;
     }
+}
+
+.title {
+    margin: 10px;
+}
+
+.footer {
+    background-color: rgba(0,0,0,0.2);
+    padding: 10px;
 }
