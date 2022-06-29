@@ -24,12 +24,12 @@
 
 
     <script>
-        //save the Json file as a local variable
+
         var castles = <%- castles %>;
 
         var map;
 
-
+        // Initialise and set start point for map
         function initMap() {
             const myLatLng = { lat: 36.29739303213108, lng: 138.53031026316654 };
 
@@ -52,7 +52,6 @@
             })
         // Update the U.I. when a marker is clicked
           google.maps.event.addListener(castle, 'click', function() {
-              console.log("click")
              document.getElementById('castleTitle').innerHTML = castle.title;
              document.getElementById('castleDate').innerHTML = "Built: " + castle.built;
              document.getElementById('castleOwner').innerHTML = "Built by: " + castle.owner;
@@ -64,13 +63,17 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=<APIKEY>callback=initMap"
+
+    <script src=<%-apikey%>
     async defer></script>
 
 
 
-<div class="footer">
-    All information is thought to be correct, but errors in translation of names or dates may exist. This website was designed for fun only, and should not be considered to be 100% accurate.
-</div>
+
   </body>
+  <footer>
+      <div class="footer">
+          All information is thought to be correct, but errors in translation of names or dates may exist. This website was designed for fun only, and should not be considered to be 100% accurate.
+      </div>
+  </footer>
 </html>
